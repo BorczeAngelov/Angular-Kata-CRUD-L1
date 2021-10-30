@@ -9,7 +9,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { PersonShellComponent } from './persons/person-shell/person-shell.component';
 import { PersonListComponent } from './persons/person-list/person-list.component';
 import { PersonEditComponent } from './persons/person-edit/person-edit.component';
-import { PersonDataService } from './persons/person-data.service';
+import { InMemPersonDbService } from './persons/person-data';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { PersonDataService } from './persons/person-data.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(PersonDataService),
+    HttpClientInMemoryWebApiModule.forRoot(InMemPersonDbService),
   ],
   providers: [],
   bootstrap: [AppComponent]
