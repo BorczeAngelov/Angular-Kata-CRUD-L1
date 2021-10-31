@@ -10,7 +10,7 @@ import { Person } from './person';
   providedIn: 'root'
 })
 export class PersonService {
-  private productsUrl = 'api/persons';
+  private personsUrl = 'api/persons';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,15 +19,22 @@ export class PersonService {
   constructor(private http: HttpClient) { }
 
   getPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.productsUrl)
+    return this.http.get<Person[]>(this.personsUrl)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
 
+  addPerson(person: Person): Observable<Person> {
+    return this.http.post<Person>(this.personsUrl, person, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   getPerson(id: number): Observable<Person> {
-    const url = `${this.productsUrl}/${id}`;
+    const url = `${this.personsUrl}/${id}`;
 
     return this.http.get<Person>(url)
       .pipe(
@@ -36,7 +43,7 @@ export class PersonService {
   }
 
   deletePerson(id: number): Observable<Person> {
-    const url = `${this.productsUrl}/${id}`;
+    const url = `${this.personsUrl}/${id}`;
     return this.http.delete<Person>(url, this.httpOptions).pipe(
       catchError(this.handleError)
     );

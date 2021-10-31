@@ -10,3 +10,13 @@
         (click)="delete(person)">X</button>
     </li>
 </ul>
+
+
+<div>
+    <label for="new-person">First name: </label>
+    <input id="new-person" #personName />
+
+    <button class="add-button" (click)="add(personName.value); personName.value=''">
+        Add New Person
+    </button>
+</div>
