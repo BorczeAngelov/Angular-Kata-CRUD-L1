@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule, Routes } from '@angular/router';
+import { PersonListComponent } from './persons/person-list/person-list.component';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
-  { path: 'welcome', component: WelcomeComponent }
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: 'list', component: PersonListComponent }
 ];
 
 @NgModule({
