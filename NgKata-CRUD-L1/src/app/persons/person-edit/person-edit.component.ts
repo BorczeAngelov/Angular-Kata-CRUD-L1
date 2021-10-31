@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Person } from '../person';
+import { PersonService } from '../person.service';
 
 @Component({
   selector: 'app-person-edit',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonEditComponent implements OnInit {
 
-  constructor() { }
+  @Input() person?: Person;
+
+  constructor(
+    private route: ActivatedRoute,
+    private personService: PersonService) { }
 
   ngOnInit(): void {
+    this.getPerson();
+  }
+
+  getPerson() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.personService.getPerson(id)
+      .subscribe(person => this.person = person);
   }
 
 }

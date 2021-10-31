@@ -1,1 +1,11 @@
-<p>person-edit works!</p>
+<h2>Person Edit Component</h2>
+
+<div *ngIf="person">
+
+    <h2>{{person.firstName | uppercase}} Details</h2>
+    <div><span>id: </span>{{person.id}}</div>
+    <div>
+      <label for="person-name">Person name: </label>
+      <input id="person-name" [(ngModel)]="person.firstName" placeholder="first name">
+    </div>
+  </div>

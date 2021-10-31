@@ -14,10 +14,19 @@ export class PersonService {
 
   constructor(private http: HttpClient) { }
 
-  getPersons(): Observable<Person[]> {    
+  getPersons(): Observable<Person[]> {
     return this.http.get<Person[]>(this.productsUrl)
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),        
+        tap(data => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  getPerson(id: number) {
+    const url = `${this.productsUrl}/${id}`;
+
+    return this.http.get<Person>(url)
+      .pipe(
         catchError(this.handleError)
       );
   }

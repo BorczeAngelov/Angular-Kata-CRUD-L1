@@ -1,9 +1,9 @@
-<h2>Person lists component</h2>
+<h2>Person List Component</h2>
 
-<div class="persons-menu">
-    <a *ngFor="let person of persons">
-        {{person.firstName}}
-    </a>
-</div>
-
-<app-person-edit></app-person-edit>
+<ul class="persons">
+    <li *ngFor="let person of persons">
+        <a routerLink="/edit/{{person.id}}">
+            <span class="badge">{{person.id}}</span> {{person.firstName}}
+        </a>
+    </li>
+</ul>

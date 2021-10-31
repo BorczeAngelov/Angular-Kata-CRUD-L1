@@ -11,6 +11,7 @@ import { PersonEditComponent } from './persons/person-edit/person-edit.component
 
 import { AppRoutingModule } from './app-routing.module';
 import { InMemoryDataService } from './in-memory-data.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { InMemoryDataService } from './in-memory-data.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     AppRoutingModule,
   ],
