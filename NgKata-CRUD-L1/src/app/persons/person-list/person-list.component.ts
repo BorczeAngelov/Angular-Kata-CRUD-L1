@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
 
@@ -9,7 +10,7 @@ import { PersonService } from '../person.service';
 })
 export class PersonListComponent implements OnInit {
 
-  persons: Person[]= [];
+  persons: Person[] = [];
 
   constructor(private personService: PersonService) { }
 
@@ -20,6 +21,11 @@ export class PersonListComponent implements OnInit {
   getPersons() {
     this.personService.getPersons()
       .subscribe(persons => this.persons = persons);
+  }
+
+  delete(person: Person) {
+    this.persons = this.persons.filter(p => p.id !== person.id);
+    this.personService.deletePerson(person.id);
   }
 
 }

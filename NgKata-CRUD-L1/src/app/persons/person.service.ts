@@ -12,6 +12,10 @@ import { Person } from './person';
 export class PersonService {
   private productsUrl = 'api/persons';
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private http: HttpClient) { }
 
   getPersons(): Observable<Person[]> {
@@ -22,7 +26,7 @@ export class PersonService {
       );
   }
 
-  getPerson(id: number) {
+  getPerson(id: number): Observable<Person> {
     const url = `${this.productsUrl}/${id}`;
 
     return this.http.get<Person>(url)
@@ -30,6 +34,17 @@ export class PersonService {
         catchError(this.handleError)
       );
   }
+
+  deletePerson(id: number): Observable<Person> {
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.delete<Person>(url, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
+
+
 
   private handleError(err: any) {
     // in a real world app, we may send the server to some remote logging infrastructure
