@@ -50,7 +50,12 @@ export class PersonService {
   }
 
 
-
+  updatePerson(person: Person): Observable<any> {
+    return this.http.put(this.personsUrl, person, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
 
   private handleError(err: any) {

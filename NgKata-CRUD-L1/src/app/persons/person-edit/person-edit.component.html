@@ -5,7 +5,10 @@
     <h2>{{person.firstName | uppercase}} Details</h2>
     <div><span>id: </span>{{person.id}}</div>
     <div>
-      <label for="person-name">Person name: </label>
-      <input id="person-name" [(ngModel)]="person.firstName" placeholder="first name">
+        <label for="person-name">Person name: </label>
+        <input id="person-name" [(ngModel)]="person.firstName" placeholder="first name">
     </div>
-  </div>
+
+    <button (click)="goBack()">Go back</button>
+    <button (click)="save()">Save changes</button>
+</div>

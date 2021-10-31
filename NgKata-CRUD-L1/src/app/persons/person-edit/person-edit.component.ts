@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
@@ -14,7 +15,8 @@ export class PersonEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private personService: PersonService) { }
+    private personService: PersonService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.getPerson();
@@ -27,4 +29,14 @@ export class PersonEditComponent implements OnInit {
       .subscribe(person => this.person = person);
   }
 
+  save(): void {
+    if (this.person) {
+      this.personService.updatePerson(this.person)
+        .subscribe(() => this.goBack());
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
