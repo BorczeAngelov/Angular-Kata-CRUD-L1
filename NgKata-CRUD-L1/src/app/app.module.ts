@@ -9,7 +9,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { PersonShellComponent } from './persons/person-shell/person-shell.component';
 import { PersonListComponent } from './persons/person-list/person-list.component';
 import { PersonEditComponent } from './persons/person-edit/person-edit.component';
-import { InMemPersonDbService } from './persons/person-data';
+
+import { AppRoutingModule } from './app-routing.module';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { InMemPersonDbService } from './persons/person-data';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemPersonDbService),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
